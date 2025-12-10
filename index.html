@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XINNDESAINER — Premium Logo server samp Design</title>
+
+<!-- ===== STYLES (tetap sama seperti versi kamu) ===== -->
+<style>
+/* ROOT */
+:root{
+  --bg:#020007;
+  --card:rgba(255,255,255,0.03);
+  --muted:#9fb0c9;
+  --accent1:#ff0058;
+  --accent2:#00f0ff;
+  --accent3:#7cff00;
+  --max-width:1100px;
+}
+
+*{box-sizing:border-box}
+html,body{
+  height:100%;margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:#020007;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar{
+  width:100%;
+  padding:14px 24px;
+  position:fixed;
+  top:0; left:0;
+  z-index:5;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.35);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(8px);
+}
+.nav-left{
+  font-size:20px;
+  font-weight:700;
+  color:#00f0ff;
+}
+.nav-right a{
+  margin-left:18px;
+  color:#fff;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+  transition:.2s;
+}
+.nav-right a:hover{color:#00f0ff}
+
+/* CANVAS */
+canvas#particles{
+  position:fixed;
+  inset:0;
+  z-index:-10;
+}
+
+/* HERO */
+.center-box{
+  text-align:center;
+  margin-top:120px;
+  padding:20px;
+}
+.glow{
+  font-size:clamp(36px,6vw,70px);
+  font-weight:800;
+  letter-spacing:2px;
+  animation:rgbGlow 4s infinite linear;
+}
+@keyframes rgbGlow{
+  0%{text-shadow:0 0 16px #ff00cc}
+  25%{text-shadow:0 0 16px #00f0ff}
+  50%{text-shadow:0 0 16px #7cff00}
+  75%{text-shadow:0 0 16px #ffae00}
+  100%{text-shadow:0 0 16px #ff00cc}
+}
+.subtitle{color:var(--muted);margin-top:8px;font-size:16px}
+.price{color:var(--muted);margin-top:10px}
+.btn{
+  margin-top:18px;
+  padding:12px 24px;
+  display:inline-block;
+  border-radius:12px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent1));
+  color:#02111a;
+  font-weight:800;
+  text-decoration:none;
+}
+
+/* MARQUEE */
+.marquee{
+  margin:28px auto;
+  padding:12px;
+  max-width:var(--max-width);
+  background:rgba(255,255,255,0.08);
+  border-radius:12px;
+  overflow:hidden;
+}
+.marquee span{
+  display:inline-block;
+  white-space:nowrap;
+  animation:run 12s linear infinite;
+  font-weight:700;
+}
+@keyframes run{
+  0%{transform:translateX(100%)}
+  100%{transform:translateX(-100%)}
+}
+
+/* PRODUK */
+.produk{
+  max-width:var(--max-width);
+  margin:34px auto;
+  padding:20px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+.card{
+  background:var(--card);
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.05);
+  box-shadow:0 8px 30px rgba(0,0,0,0.5);
+}
+.muted{color:var(--muted);font-size:14px}
+.price-tag{
+  color:var(--accent2);
+  margin-top:8px;
+  font-weight:800;
+}
+.mini-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 14px;
+  border-radius:10px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent1));
+  color:#02111a;
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* PORTFOLIO */
+.preview-img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:12px;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+  transition:.25s;
+}
+.preview-img:hover{
+  transform:scale(1.04);
+  box-shadow:0 0 24px rgba(0,255,255,0.4);
+}
+
+/* ORDER FORM */
+.order-box{
+  max-width:var(--max-width);
+  margin:40px auto;
+  padding:20px;
+  text-align:center;
+}
+.order-form{
+  margin-top:20px;
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+.order-form label{
+  text-align:left;
+  display:block;
+  margin-top:14px;
+  margin-bottom:6px;
+  font-size:14px;
+  color:var(--muted);
+}
+.order-form input,
+.order-form select,
+.order-form textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  margin-bottom:10px;
+  background:rgba(0,0,0,0.35);
+  color:#fff;
+}
+.btn-order{
+  margin-top:12px;
+  padding:12px 24px;
+  border-radius:12px;
+  width:100%;
+  font-weight:800;
+  color:#02111a;
+  border:none;
+  cursor:pointer;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  margin:40px auto;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* small responsive tweaks */
+@media(max-width:820px){
+  .center-box{margin-top:140px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left" id="siteBrand">XINNDESAINER</div>
+  <div class="nav-right">
+    <a href="#home">Home</a>
+    <a href="#produk">Produk</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#order">Pemesanan</a>
+    <a href="#orderWeb">Pemesanan Web</a>
+  </div>
+</nav>
+
+<canvas id="particles"></canvas>
+
+<!-- HERO -->
+<div id="home" class="center-box">
+  <h1 class="glow" id="heroTitle">XINNDESAINER</h1>
+  <p class="subtitle" id="heroSub">
+    Jasa desain logo server game dan logo sirkel <br>
+    Harga terjangkau, kualitas tinggi, proses cepat.
+  </p>
+  <p class="price">Mulai dari <strong id="priceRange">2K – 7K</strong></p>
+  <a class="btn" id="mainCta" href="#" target="_blank">Buat Logo Sekarang</a>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <span id="marqueeText">✨ GRAND OPENING — DESAIN LOGO PREMIUM MULAI 2K ✨</span>
+</div>
+
+<!-- PRODUK LOGO -->
+<section id="produk" class="produk">
+  <h2>Paket Desain Logo</h2>
+  <div id="logoGrid" class="grid">
+    <!-- will fill from firebase -->
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="produk">
+  <h2>Contoh Desain Logo</h2>
+  <div id="portfolioGrid" class="grid">
+    <!-- will fill from firebase -->
+  </div>
+</section>
+
+<!-- FORM PEMESANAN LOGO -->
+<section id="order" class="order-box">
+  <h2>Form Pemesanan Logo</h2>
+  <div class="order-form">
+
+    <label>Nama Anda</label>
+    <input id="nama" type="text" placeholder="Masukkan nama">
+
+    <label>Nama Brand</label>
+    <input id="brand" type="text" placeholder="Nama brand">
+
+    <label>Warna Logo</label>
+    <input id="warna" type="text" placeholder="Contoh: RGB, biru neon">
+
+    <label>Gaya Logo</label>
+    <select id="style">
+      <option>Minimalis</option>
+      <option>Mascot</option>
+      <option>Typography</option>
+      <option>Modern</option>
+      <option>RGB Glow</option>
+      <option>3D Effect</option>
+    </select>
+
+    <label>Paket</label>
+    <select id="paket">
+      <!-- filled from firebase as well -->
+    </select>
+
+    <label>Detail Custom</label>
+    <textarea id="detail" placeholder="Tulis request khusus..."></textarea>
+
+    <label>Catatan</label>
+    <textarea id="catatan" placeholder="Catatan tambahan..."></textarea>
+
+    <button class="btn-order" id="sendLogoBtn" style="background:linear-gradient(90deg,var(--accent2),var(--accent1));">Kirim via WhatsApp</button>
+  </div>
+</section>
+
+<!-- FORM PEMESANAN WEBSITE -->
+<section id="orderWeb" class="order-box">
+  <h2>Pemesanan Website</h2>
+  <div class="order-form">
+
+    <label>Nama Anda</label>
+    <input id="namaWeb" type="text" placeholder="Nama Anda">
+
+    <label>Nama Brand / Toko</label>
+    <input id="brandWeb" type="text" placeholder="Nama brand / toko">
+
+    <label>Paket Website</label>
+    <select id="paketWeb">
+      <!-- filled from firebase -->
+    </select>
+
+    <label>Fitur Tambahan</label>
+    <textarea id="fiturWeb" placeholder="Contoh: Live Chat, halaman produk, dashboard admin"></textarea>
+
+    <label>Catatan</label>
+    <textarea id="catatanWeb" placeholder="Catatan..."></textarea>
+
+    <button class="btn-order" id="sendWebBtn" style="background:linear-gradient(90deg,#7cff00,#00f0ff);">Kirim Pemesanan Web</button>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <small>© <span id="year"></span> XINNDESAINER — Profesional & Elegan.</small>
+</footer>
+
+<!-- =========================
+     FIREBASE (Realtime DB v8) + LOGIC
+     ========================= -->
+<!-- Firebase v8 -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+/*
+  Dynamic index.html:
+  - Reads from RTDB nodes:
+      /web/harga           -> { express:"2000", basic:"5000", premium:"7000" }
+      /web/hargaWeb        -> { landing:"20000", toko:"50000", portfolio:"30000", company:"45000" }
+      /web/portfolio       -> { key1: "https://...", key2: "https://..." }
+      /web/nomorWA         -> "6287...."
+      /web/texts           -> { title, subtitle, marquee, priceRange }
+  - Saves orders to:
+      /orders        (logo orders)
+      /ordersWebsite (web orders)
+  - Uses the Firebase config you provided (panel-4934a)
+*/
+
+/* ===== FIREBASE CONFIG - panel-4934a ===== */
+const firebaseConfig = {
+  apiKey: "AIzaSyDauPsU0BPXecmxgRt_tyjbdzE3jfxfy68",
+  authDomain: "panel-4934a.firebaseapp.com",
+  databaseURL: "https://panel-4934a-default-rtdb.firebaseio.com",
+  projectId: "panel-4934a",
+  storageBucket: "panel-4934a.firebasestorage.app",
+  messagingSenderId: "182694859399",
+  appId: "1:182694859399:web:a8287997928b6c82781e22",
+  measurementId: "G-YW3X8HCDZ0"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+/* ===== UTILS ===== */
+const $ = id => document.getElementById(id);
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== DEFAULTS ===== */
+let nomorWA = "6287867162459";
+
+/* ===== INIT: load dynamic content ===== */
+function initDynamic(){
+  // 1) harga logo
+  db.ref('web/harga').on('value', snap => {
+    const h = snap.val() || { express: "2000", basic: "5000", premium: "7000" };
+    // populate logo grid (cards)
+    const logoGrid = $('logoGrid');
+    logoGrid.innerHTML = '';
+    const list = [
+      {title:'Paket Express', desc:'1 konsep • revisi 1x', price:h.express},
+      {title:'Paket Basic', desc:'2 konsep • revisi 2x', price:h.basic},
+      {title:'Paket Premium', desc:'5 konsep • revisi bebas', price:h.premium}
+    ];
+    list.forEach(it=>{
+      const node = document.createElement('article');
+      node.className = 'card';
+      node.innerHTML = `<h3>${it.title}</h3><p class="muted">${it.desc}</p><p class="price-tag">Rp ${it.price}</p>
+        <a class="mini-btn" href="#order" onclick="selectLogoPackage('${it.title} — Rp ${it.price}')">Pesan</a>`;
+      logoGrid.appendChild(node);
+    });
+
+    // populate paket select in order form
+    const paketSelect = $('paket');
+    paketSelect.innerHTML = '';
+    paketSelect.add(new Option(`Paket Express (${h.express})`, `Paket Express (${h.express})`));
+    paketSelect.add(new Option(`Paket Basic (${h.basic})`, `Paket Basic (${h.basic})`));
+    paketSelect.add(new Option(`Paket Premium (${h.premium})`, `Paket Premium (${h.premium})`));
+
+    // update hero priceRange if exists
+    const priceRangeEl = $('priceRange');
+    if(priceRangeEl){
+      priceRangeEl.textContent = `${formatShort(h.express)} – ${formatShort(h.premium)}`;
+    }
+  });
+
+  // 2) harga web
+  db.ref('web/hargaWeb').on('value', snap => {
+    const w = snap.val() || { landing: "20000", toko: "50000", portfolio: "30000", company: "45000" };
+    const webGrid = $('webGrid') || createWebGridPlaceholder();
+    // sometimes webGrid not present (older versions) - ensure exists
+    if(webGrid){
+      webGrid.innerHTML = '';
+      const items = [
+        {k:'landing', t:'Landing Page', p:w.landing},
+        {k:'toko', t:'Toko Online', p:w.toko},
+        {k:'portfolio', t:'Portfolio', p:w.portfolio},
+        {k:'company', t:'Company Profile', p:w.company},
+      ];
+      items.forEach(it=>{
+        const node = document.createElement('div');
+        node.className = 'card';
+        node.innerHTML = `<h3>${it.t}</h3><p class="price-tag">Rp ${it.p}</p><div style="margin-top:8px"><a class="mini-btn" href="#orderWeb" onclick="selectWebPackage('${it.t} — Rp ${it.p}')">Pilih Paket</a></div>`;
+        webGrid.appendChild(node);
+      });
+    }
+
+    // populate paketWeb select
+    const paketWeb = $('paketWeb');
+    if(paketWeb){
+      paketWeb.innerHTML = '';
+      paketWeb.add(new Option(`Landing Page (${w.landing})`, `Landing Page (${w.landing})`));
+      paketWeb.add(new Option(`Toko Online (${w.toko})`, `Toko Online (${w.toko})`));
+      paketWeb.add(new Option(`Portfolio (${w.portfolio})`, `Portfolio (${w.portfolio})`));
+      paketWeb.add(new Option(`Company Profile (${w.company})`, `Company Profile (${w.company})`));
+    }
+  });
+
+  // 3) portfolio
+  db.ref('web/portfolio').on('value', snap => {
+    const data = snap.val() || {};
+    const pg = $('portfolioGrid');
+    pg.innerHTML = '';
+    const keys = Object.keys(data || {});
+    if(keys.length === 0){
+      pg.innerHTML = `<div class="card"><div class="muted">Belum ada portfolio</div></div>`;
+      return;
+    }
+    keys.forEach(k=>{
+      const url = data[k];
+      const node = document.createElement('div');
+      node.className = 'card';
+      node.innerHTML = `<a href="${url}" target="_blank"><img class="preview-img" src="${url}" alt="portfolio"></a>`;
+      pg.appendChild(node);
+    });
+  });
+
+  // 4) nomor WA
+  db.ref('web/nomorWA').on('value', snap => {
+    const v = snap.val();
+    if(v) nomorWA = v;
+    updateMainCTAs();
+  });
+
+  // 5) texts (hero, marquee, brand)
+  db.ref('web/texts').on('value', snap => {
+    const t = snap.val() || {};
+    if(t.title) $('heroTitle').textContent = t.title;
+    if(t.subtitle) $('heroSub').textContent = t.subtitle;
+    if(t.marquee) $('marqueeText').textContent = t.marquee;
+    if(t.priceRange) $('priceRange').textContent = t.priceRange;
+    if(t.siteBrand) $('siteBrand').textContent = t.siteBrand;
+    updateMainCTAs();
+  });
+
+  // initial UI updates
+  updateMainCTAs();
+}
+
+/* helper to create missing webGrid (if older versions) */
+function createWebGridPlaceholder(){
+  let el = $('webGrid');
+  if(!el){
+    const sec = document.createElement('section');
+    sec.id = 'paketWeb';
+    sec.className = 'produk';
+    sec.innerHTML = '<h2>Paket Pembuatan Website</h2><div id="webGrid" class="grid"></div>';
+    // insert before portfolio
+    const portfolio = $('portfolio');
+    portfolio.parentNode.insertBefore(sec, portfolio);
+    el = $('webGrid');
+  }
+  return el;
+}
+
+/* helper to format short number like 2000 -> 2K */
+function formatShort(val){
+  if(!val) return val;
+  const n = Number(String(val).replace(/\D/g,''));
+  if(isNaN(n)) return val;
+  if(n >= 1000 && n < 1000000) return (n/1000).toFixed(n%1000===0?0:1) + 'K';
+  if(n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  return String(n);
+}
+
+/* update CTA links to use current WA */
+function updateMainCTAs(){
+  // main CTA button (Buat Logo Sekarang)
+  const main = $('mainCta');
+  if(main){
+    main.href = `https://wa.me/${nomorWA}`;
+    main.target = "_blank";
+  }
+  // other CTAs are handled when sending orders
+}
+
+/* helpers for selecting packages (pre-fill selects) */
+function selectLogoPackage(val){
+  const sel = $('paket');
+  for(let i=0;i<sel.options.length;i++){
+    if(sel.options[i].text.includes(val.split(' — ')[0]) || sel.options[i].value === val){
+      sel.selectedIndex = i; break;
+    }
+  }
+  // scroll to order
+  location.hash = 'order';
+}
+function selectWebPackage(val){
+  const sel = $('paketWeb');
+  for(let i=0;i<sel.options.length;i++){
+    if(sel.options[i].text.includes(val.split(' — ')[0]) || sel.options[i].value === val){
+      sel.selectedIndex = i; break;
+    }
+  }
+  location.hash = 'orderWeb';
+}
+
+/* ===== ORDER HANDLERS (save to DB + open WA) ===== */
+function pushOrder(node, data){
+  return db.ref(node).push(data);
+}
+
+/* Logo order send */
+function handleSendLogo(){
+  const nama = $('nama').value.trim();
+  const brand = $('brand').value.trim();
+  const warna = $('warna').value.trim();
+  const style = $('style').value;
+  const paket = $('paket').value;
+  const detail = $('detail').value.trim();
+  const catatan = $('catatan').value.trim();
+
+  if(!nama || !brand){
+    alert('Nama & Brand harus diisi!');
+    return;
+  }
+
+  const pesan = `Halo Admin XINNDESAINER,
+Saya ingin memesan desain logo.
+
+Nama: ${nama}
+Brand: ${brand}
+Warna: ${warna}
+Style: ${style}
+Paket: ${paket}
+
+Detail Custom:
+${detail}
+
+Catatan:
+${catatan}
+`;
+
+  // push to DB
+  pushOrder('orders', {
+    jenis: 'logo',
+    nama, brand, warna, style, paket, detail, catatan,
+    waktu: Date.now()
+  }).then(()=>{
+    // open WA
+    window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+    alert('Pesanan tersimpan — membuka WhatsApp.');
+    // optional: reset form (keep values? we'll clear details)
+    $('detail').value = '';
+    $('catatan').value = '';
+  }).catch(e=>{
+    console.error(e);
+    alert('Gagal menyimpan pesanan — cek koneksi / rules Firebase.');
+  });
+}
+
+/* Web order send */
+function handleSendWeb(){
+  const nama = $('namaWeb').value.trim();
+  const brand = $('brandWeb').value.trim();
+  const paket = $('paketWeb').value;
+  const fitur = $('fiturWeb').value.trim();
+  const catatan = $('catatanWeb').value.trim();
+
+  if(!nama || !brand){
+    alert('Nama & Brand harus diisi!');
+    return;
+  }
+
+  const pesan = `Halo Admin XINNDESAINER,
+Saya ingin memesan WEBSITE.
+
+Nama: ${nama}
+Brand/Toko: ${brand}
+Paket Website: ${paket}
+
+Fitur Tambahan:
+${fitur}
+
+Catatan:
+${catatan}
+`;
+
+  // push to DB
+  pushOrder('ordersWebsite', {
+    nama, brand, paket, fitur, catatan,
+    waktu: Date.now()
+  }).then(()=>{
+    window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+    alert('Pesanan website tersimpan — membuka WhatsApp.');
+    $('fiturWeb').value = '';
+    $('catatanWeb').value = '';
+  }).catch(e=>{
+    console.error(e);
+    alert('Gagal menyimpan pesanan website — cek koneksi / rules Firebase.');
+  });
+}
+
+/* attach handlers to buttons */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // attach dynamic init
+  initDynamic();
+
+  // button handlers
+  const sendLogoBtn = $('sendLogoBtn');
+  if(sendLogoBtn) sendLogoBtn.addEventListener('click', handleSendLogo);
+
+  const sendWebBtn = $('sendWebBtn');
+  if(sendWebBtn) sendWebBtn.addEventListener('click', handleSendWeb);
+
+  // fallback: if paket selects empty (no connection), fill with defaults
+  setTimeout(()=>{
+    if($('paket').options.length === 0){
+      $('paket').add(new Option('Paket Express (2000)', 'Paket Express (2000)'));
+      $('paket').add(new Option('Paket Basic (5000)', 'Paket Basic (5000)'));
+      $('paket').add(new Option('Paket Premium (7000)', 'Paket Premium (7000)'));
+    }
+    if($('paketWeb') && $('paketWeb').options.length === 0){
+      $('paketWeb').add(new Option('Landing Page (20000)', 'Landing Page (20000)'));
+      $('paketWeb').add(new Option('Toko Online (50000)', 'Toko Online (50000)'));
+      $('paketWeb').add(new Option('Portfolio (30000)', 'Portfolio (30000)'));
+      $('paketWeb').add(new Option('Company Profile (45000)', 'Company Profile (45000)'));
+    }
+  }, 1500);
+});
+
+/* ===== PARTICLE BACKGROUND (RGB) - same as your design ===== */
+(function(){
+  const canvas=document.getElementById("particles");
+  if(!canvas) return;
+  const c=canvas.getContext("2d");
+  let w=canvas.width=innerWidth;
+  let h=canvas.height=innerHeight;
+  const p=[];
+  for(let i=0;i<100;i++){
+    p.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,
+            vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,
+            color:`rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},0.9)`});
+  }
+  window.addEventListener("resize",()=>{w=canvas.width=innerWidth;h=canvas.height=innerHeight;});
+  function loop(){
+    c.fillStyle="rgba(0,0,10,0.25)";
+    c.fillRect(0,0,w,h);
+    p.forEach(a=>{
+      c.beginPath();c.arc(a.x,a.y,a.r,0,Math.PI*2);
+      c.fillStyle=a.color;c.fill();
+      a.x+=a.vx;a.y+=a.vy;
+      if(a.x<0)a.x=w;if(a.x>w)a.x=0;
+      if(a.y<0)a.y=h;if(a.y>h)a.y=0;
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+</body>
+</html>
